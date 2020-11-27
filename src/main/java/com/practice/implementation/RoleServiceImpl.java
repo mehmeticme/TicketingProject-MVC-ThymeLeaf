@@ -2,9 +2,10 @@ package com.practice.implementation;
 
 import com.practice.dto.RoleDTO;
 import com.practice.service.RoleService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class RoleServiceImpl extends AbstractMapService<RoleDTO,Long> implements RoleService {
     @Override
     public List<RoleDTO> findAll() {
@@ -21,6 +22,11 @@ public class RoleServiceImpl extends AbstractMapService<RoleDTO,Long> implements
     public void delete(RoleDTO object) {
 
         super.delete(object);
+    }
+
+    @Override
+    public void update(RoleDTO object) {
+        super.update(object.getId(),object);
     }
 
     @Override
