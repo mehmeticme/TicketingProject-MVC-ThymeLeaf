@@ -20,7 +20,7 @@
                 <div class="admin-widget">
                     <h2>Project Create</h2>
                     <div class="row">
-                        <form th:action="@{/project/create}" method="post" th:object="${project}"
+                        <form th:action="@{/project/update}" method="post" th:object="${project}"
                               class="col-6 needs-validation" novalidate>
 
                             <div class="form-group">
@@ -33,7 +33,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="projectCode">Project Code</label>
-                                <input type="text" class="form-control mb-2" id="projectCode" th:field="*{projectCode}"
+                                <input type="text" class="form-control mb-2" id="projectCode" th:field="*{projectCode}" readonly
                                        placeholder="enter your project code" required>
                                 <div class="invalid-feedback">
                                     Please enter Project Code

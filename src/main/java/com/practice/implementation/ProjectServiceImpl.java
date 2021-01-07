@@ -1,6 +1,7 @@
 package com.practice.implementation;
 
 import com.practice.dto.ProjectDTO;
+import com.practice.enums.Status;
 import com.practice.service.ProjectService;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,8 @@ public class ProjectServiceImpl extends AbstractMapService<ProjectDTO,String > i
 
     @Override
     public ProjectDTO findById(String id) {
-        return null;
+
+        return  super.findBy(id);
     }
 
     @Override
@@ -39,5 +41,11 @@ public class ProjectServiceImpl extends AbstractMapService<ProjectDTO,String > i
     public void update(ProjectDTO object) {
 
         super.update(object.getProjectCode(),object);
+    }
+
+    @Override
+    public void completeProject(ProjectDTO project) {
+        project.setProjectStatus(Status.COMPLETE);
+        super.save(project.getProjectCode(),project);
     }
 }

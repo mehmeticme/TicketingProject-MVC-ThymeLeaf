@@ -32,7 +32,7 @@ public class ProjectController {
 
         model.addAttribute("project",new ProjectDTO());
         model.addAttribute("projects",projectService.findAll());
-        model.addAttribute("managers",userService.findAll());
+        model.addAttribute("managers",userService.findManagers());
 
         return "/project/projectCreate";
     }
@@ -60,6 +60,32 @@ public class ProjectController {
         model.addAttribute("project",new ProjectDTO());
         model.addAttribute("projects",projectService.findAll());
         model.addAttribute("managers",userService.findAll());
+
+        return "redirect:/project/create";
+    }
+
+    @GetMapping("/complete/{projectCode}")
+    public String completeProject(@PathVariable("projectCode") String projectCode){
+
+        projectService.completeProject(projectService.findById(projectCode));
+        return "redirect:/project/create";
+    }
+
+    @GetMapping("/update/{projectCode}")
+    public String updateProject(@PathVariable("projectCode") String projectCode, Model model){
+
+        model.addAttribute("project",projectService.findById(projectCode));
+        model.addAttribute("projects",projectService.findAll());
+        model.addAttribute("managers",userService.findManagers());
+
+        return "/project/projectUpdate";
+    }
+
+
+    @PostMapping("/update")
+    public String postProject(ProjectDTO project,Model model){
+
+        projectService.update(project);
 
         return "redirect:/project/create";
     }
